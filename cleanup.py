@@ -8,10 +8,8 @@ import click
 session = boto3.Session(profile_name='shotty')
 ec2 = session.resource('ec2')
 
-#####################################
 # Filter by tag
-# Usage --project chorus
-#####################################
+
 def filter_instances(project):
     instances = []
 
@@ -22,6 +20,7 @@ def filter_instances(project):
     else:
         instances = ec2.instances.all()
 
+    
     return instances
 
 #####################################
@@ -64,10 +63,6 @@ def list_snapshots(project):
 #last snapshot only:            if s.state == 'completed': break
 
     return
-
-#####################################
-# Volumes group
-#####################################
 
 @cli.group('volumes')
 def volumes():
